@@ -54,7 +54,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
       
       {/* Content */}
       <div className="p-4">
-        <p className="text-foreground mb-3">{project.description}</p>
+        <pre className="text-foreground mb-3 text-wrap">{project.description}</pre>
         
         {/* Tags */}
         <div className="flex flex-wrap gap-2 mb-4">

@@ -6,7 +6,7 @@ import { projects } from '@/data';
 const ProjectsPage: React.FC = () => {
   const featuredProjects = projects.filter(project => project.featured);
   const otherProjects = projects.filter(project => !project.featured);
-  
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -23,7 +23,7 @@ const ProjectsPage: React.FC = () => {
           A collection of my work, side projects, and experiments.
         </p>
       </header>
-      
+
       {/* Featured projects */}
       {featuredProjects.length > 0 && (
         <div className="mb-12">
@@ -35,31 +35,34 @@ const ProjectsPage: React.FC = () => {
           </div>
         </div>
       )}
-      
+
       {/* Other projects */}
-      <div>
-        <h2 className="text-xl font-mono text-neon-blue mb-4">{"// All Projects"}</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {otherProjects.map((project) => (
-            <ProjectCard key={project.id} project={project} />
-          ))}
+
+      {otherProjects.length > 0 && (
+        <><div>
+          <h2 className="text-xl font-mono text-neon-blue mb-4">{"// All Projects"}</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {otherProjects.map((project) => (
+              <ProjectCard key={project.id} project={project} />
+            ))}
+          </div>
         </div>
-      </div>
-      
-      {/* Footer note */}
-      <div className="mt-12 p-4 bg-terminal neon-border rounded-lg text-center">
-        <p className="text-white/70">
-          More projects available on my{' '}
-          <a
-            href="https://github.com/harshbansal"
-            target="_blank"
-            rel="noreferrer"
-            className="text-neon-blue hover:underline"
-          >
-            GitHub
-          </a>
-        </p>
-      </div>
+
+          <div className="mt-12 p-4 bg-terminal neon-border rounded-lg text-center">
+            <p className="text-white/70">
+              More projects available on my{' '}
+              <a
+                href="https://github.com/harshbansal"
+                target="_blank"
+                rel="noreferrer"
+                className="text-neon-blue hover:underline"
+              >
+                GitHub
+              </a>
+            </p>
+          </div>
+        </>
+      )}
     </motion.div>
   );
 };

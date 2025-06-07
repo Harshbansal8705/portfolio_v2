@@ -149,7 +149,7 @@ const HomePage: React.FC = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.2 }}
-        className="text-xs text-foreground/40 text-center mt-16"
+        className="text-xs text-foreground/40 text-center mt-16 hidden md:block"
       >
         <p>Hint: Try pressing Ctrl+K or type &quot;help&quot; in the terminal</p>
       </motion.div>
