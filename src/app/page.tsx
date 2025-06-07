@@ -1,103 +1,160 @@
-import Image from "next/image";
+"use client";
+import { motion } from 'framer-motion';
+import Link from 'next/link';
+import { TypeAnimation } from 'react-type-animation';
+import { ArrowRight, Github, Linkedin, Twitter, Globe } from 'lucide-react';
+import { socialLinks } from '@/data';
 
-export default function Home() {
+const HomePage: React.FC = () => {
+  const iconMap: Record<string, React.ReactNode> = {
+    'Github': <Github className="w-5 h-5" />,
+    'Linkedin': <Linkedin className="w-5 h-5" />,
+    'Twitter': <Twitter className="w-5 h-5" />,
+    'Globe': <Globe className="w-5 h-5" />,
+  };
+  
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="container mx-auto max-w-4xl px-4"
+    >
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center min-h-[80vh]">
+        {/* Left column - text content */}
+        <div className="space-y-6">
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            <div className="inline-block bg-neon-blue/10 border border-neon-blue/30 rounded px-3 py-1 text-sm font-mono text-neon-blue mb-4">
+              $ whoami
+            </div>
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-2">
+              <span className="relative inline-block">
+                <span className="text-foreground">Harsh Bansal</span>
+                <span className="absolute inset-0 text-neon-blue/30 animate-glow" style={{ filter: 'blur(1px)' }}>Harsh Bansal</span>
+              </span>
+            </h1>
+            <h2 className="text-lg md:text-xl lg:text-2xl text-foreground/80 font-mono">
+              <TypeAnimation
+                sequence={[
+                  'Software Developer',
+                  2000,
+                  'Tech Enthusiast',
+                  2000,
+                  'Problem Solver',
+                  2000,
+                  'IIT Kharagpur Student',
+                  2000
+                ]}
+                speed={50}
+                repeat={Infinity}
+                className="text-neon-blue"
+              />
+            </h2>
+          </motion.div>
+          
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.4 }}
+            className="text-foreground/80 text-base md:text-lg"
           >
-            Read our docs
-          </a>
+            Building innovative software solutions with a focus on performance, security, and user experience. Passionate about exploring new technologies and solving complex problems.
+          </motion.p>
+          
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.6 }}
+            className="flex flex-wrap gap-4"
+          >
+            <Link
+              href="/projects"
+              className="inline-flex items-center bg-neon-blue text-background px-6 py-3 rounded-lg font-medium hover:bg-neon-blue/90 transition-colors"
+            >
+              View Projects
+              <ArrowRight className="w-4 h-4 ml-2" />
+            </Link>
+            <Link
+              href="/contact"
+              className="inline-flex items-center bg-transparent border border-neon-blue text-neon-blue px-6 py-3 rounded-lg font-medium hover:bg-neon-blue/10 transition-colors"
+            >
+              Contact Me
+            </Link>
+          </motion.div>
+          
+          {/* Social links */}
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.8 }}
+            className="flex space-x-4 mt-6"
+          >
+            {socialLinks.map((link, index) => (
+              <a
+                key={index}
+                href={link.url}
+                target="_blank"
+                rel="noreferrer"
+                className="text-foreground/60 hover:text-neon-blue transition-colors"
+                aria-label={link.platform}
+              >
+                <motion.div
+                  whileHover={{ scale: 1.1, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  {iconMap[link.icon]}
+                </motion.div>
+              </a>
+            ))}
+          </motion.div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+        
+        {/* Right column - visual elements */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.6 }}
+          className="relative hidden md:block"
         >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+          <div className="absolute inset-0 bg-glow-radial opacity-50" />
+          
+          {/* Animated code block */}
+          <div className="bg-terminal neon-border rounded-lg overflow-hidden shadow-lg">
+            <div className="terminal-header flex items-center">
+              <span>terminal@harsh-bansal</span>
+            </div>
+            <div className="p-4 font-mono text-sm">
+              <div className="text-neon-green mb-2">$ node introduction.js</div>
+              <TypeAnimation
+                sequence={[
+                  'const developer = {\n  name: "Harsh Bansal",\n  skills: ["JavaScript", "React", "Node.js", "Python"],\n  education: "IIT Kharagpur",\n  interests: ["Development", "AI", "System Design", "Open Source"]\n};\n\nconsole.log("Hello World! I\'m " + developer.name);',
+                  1000
+                ]}
+                speed={90}
+                className="text-foreground whitespace-pre"
+              />
+              <div className="text-neon-blue mt-4">Hello World! I&apos;m Harsh Bansal</div>
+              <div className="text-neon-green mt-2">$ _</div>
+            </div>
+          </div>
+        </motion.div>
+      </div>
+      
+      {/* Easter egg hint */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.2 }}
+        className="text-xs text-foreground/40 text-center mt-16"
+      >
+        <p>Hint: Try pressing Ctrl+K or type &quot;help&quot; in the terminal</p>
+      </motion.div>
+    </motion.div>
   );
-}
+};
+
+export default HomePage;

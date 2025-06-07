@@ -1,26 +1,107 @@
 @import "tailwindcss";
+@config "../../tailwind.config.mjs";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+@layer base {
+  * {
+    cursor: none;
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  body {
+    @apply bg-background text-foreground font-sans selection:bg-neon-blue selection:text-background;
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  ::selection {
+    @apply bg-neon-blue text-background;
+  }
+
+  ::-webkit-scrollbar {
+    @apply w-1;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-terminal;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-neon-blue/50 rounded-full hover:bg-neon-blue;
+  }
+
+  /* Custom cursor */
+  .cursor-dot,
+  .cursor-outline {
+    @apply fixed pointer-events-none z-100;
+    transition: opacity 0.3s ease;
+  }
+
+  .cursor-dot {
+    @apply w-1 h-1 bg-neon-blue rounded-full -translate-x-1/2 -translate-y-1/2;
+    mix-blend-mode: difference;
+  }
+
+  .cursor-outline {
+    @apply w-4 h-4 border border-neon-blue rounded-full -translate-x-1/2 -translate-y-1/2 mix-blend-exclusion;
+    transition: transform 0.15s ease-out;
+    will-change: transform;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  .neon-border {
+    @apply border border-neon-blue/50 shadow-[0_0_5px_rgba(0,229,255,0.5)];
+  }
+
+  .neon-text {
+    @apply text-neon-blue shadow-[0_0_5px_rgba(0,229,255,0.5)];
+  }
+
+  .terminal-header {
+    @apply font-mono text-neon-blue bg-terminal border border-neon-blue/20 px-4 py-2;
+  }
+
+  .command-text {
+    @apply font-mono text-neon-green;
+  }
+
+  .glitch {
+    @apply relative inline-block;
+  }
+
+  .glitch::before,
+  .glitch::after {
+    @apply content-[attr(data-text)] absolute top-0 left-0 w-full h-full;
+  }
+
+  .glitch::before {
+    @apply text-neon-blue left-[2px];
+    animation: glitch 0.3s infinite linear alternate-reverse;
+    animation-delay: -0.3s;
+  }
+
+  .glitch::after {
+    @apply text-neon-pink left-[-2px];
+    animation: glitch 0.3s infinite linear alternate-reverse;
+    animation-delay: -0.6s;
+  }
+
+  .grid-bg {
+    background-size: 40px 40px;
+    background-image: linear-gradient(to right, rgba(0, 229, 255, 0.1) 1px, transparent 1px), linear-gradient(to bottom, rgba(0, 229, 255, 0.1) 1px, transparent 1px);
+    /* @apply bg-grid-pattern bg-grid; */
+  }
+
+  .scan-line {
+    @apply absolute inset-0 bg-gradient-to-b from-transparent via-neon-blue/10 to-transparent bg-[length:100%_8px] animate-scan pointer-events-none;
+  }
+}
+
+@keyframes moveCursor {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(var(--mouse-x), var(--mouse-y));
+  }
 }
