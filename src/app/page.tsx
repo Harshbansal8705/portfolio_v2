@@ -12,7 +12,7 @@ const HomePage: React.FC = () => {
     'Twitter': <Twitter className="w-5 h-5" />,
     'Globe': <Globe className="w-5 h-5" />,
   };
-  
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -55,7 +55,7 @@ const HomePage: React.FC = () => {
               />
             </h2>
           </motion.div>
-          
+
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -64,7 +64,7 @@ const HomePage: React.FC = () => {
           >
             Building innovative software solutions with a focus on performance, security, and user experience. Passionate about exploring new technologies and solving complex problems.
           </motion.p>
-          
+
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -85,9 +85,9 @@ const HomePage: React.FC = () => {
               Contact Me
             </Link>
           </motion.div>
-          
+
           {/* Social links */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.8 }}
@@ -112,7 +112,7 @@ const HomePage: React.FC = () => {
             ))}
           </motion.div>
         </div>
-        
+
         {/* Right column - visual elements */}
         <motion.div
           initial={{ opacity: 0 }}
@@ -121,7 +121,7 @@ const HomePage: React.FC = () => {
           className="relative hidden md:block"
         >
           <div className="absolute inset-0 bg-glow-radial opacity-50" />
-          
+
           {/* Animated code block */}
           <div className="bg-terminal neon-border rounded-lg overflow-hidden shadow-lg">
             <div className="terminal-header flex items-center">
@@ -143,7 +143,7 @@ const HomePage: React.FC = () => {
           </div>
         </motion.div>
       </div>
-      
+
       {/* Easter egg hint */}
       <motion.div
         initial={{ opacity: 0 }}
