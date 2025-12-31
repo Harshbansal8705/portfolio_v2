@@ -24,8 +24,8 @@ export async function POST(req: NextRequest) {
     const emailHtml = await render(await EmailTemplate({ name, email, message }));
 
     const options = {
-      from: `Portfolio Contact Form <contact@harshbansal.in>`,
-      to: 'contact@harshbansal.in',
+      from: `Portfolio Contact Form <${process.env.FROM_EMAIL}>`,
+      to: 'harsh@harshbansal.in',
       subject: 'New message from your portfolio',
       html: emailHtml,
     };
