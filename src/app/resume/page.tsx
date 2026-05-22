@@ -70,9 +70,8 @@ export default function Resume() {
         </div>
 
         <iframe
+          className='w-full h-[70vh] md:h-screen'
           src={`${publicPdfUrl}#toolbar=0&navpanes=0`}
-          width="100%"
-          height="820"
           style={{ border: 'none', display: 'block' }}
           title="Resume - Harsh Bansal"
         />
