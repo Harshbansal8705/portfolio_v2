@@ -2,7 +2,8 @@
 
 import { motion } from 'framer-motion';
 import ExperienceCard from '@/components/ExperienceCard';
-import { experiences } from '@/data';
+import EducationCard from '@/components/EducationCard';
+import { experiences, education } from '@/data';
 
 const ExperiencePage: React.FC = () => {
   return (
@@ -16,14 +17,19 @@ const ExperiencePage: React.FC = () => {
         <div className="inline-block bg-neon-blue/10 border border-neon-blue/30 rounded px-3 py-1 text-sm font-mono text-neon-blue mb-4">
           $ cat experience.log
         </div>
-        <h1 className="text-3xl font-bold mb-2">Work Experience</h1>
+        <h1 className="text-3xl font-bold mb-2">Work Experience & Education</h1>
         <p className="text-foreground/70">
-          My professional journey and the companies I&apos;ve worked with.
+          My professional journey and educational background.
         </p>
       </header>
 
+      {/* Experience Section */}
+      <h2 className="text-2xl font-mono text-neon-blue mb-6 border-b border-neon-blue/20 pb-2">
+        {"// Work Experience"}
+      </h2>
+
       {/* Timeline */}
-      <div className="relative space-y-8 before:absolute before:inset-0 before:h-full before:w-0.5 before:bg-neon-blue/30 before:left-0 md:before:left-1/2 before:-translate-x-1/2 pl-8 md:pl-0">
+      <div className="relative space-y-8 before:absolute before:inset-0 before:h-full before:w-0.5 before:bg-neon-blue/30 before:left-0 md:before:left-1/2 before:-translate-x-1/2 pl-8 md:pl-0 mb-16">
         {experiences.map((experience, index) => (
           <div
             key={index}
@@ -34,6 +40,17 @@ const ExperiencePage: React.FC = () => {
 
             <ExperienceCard experience={experience} index={index} />
           </div>
+        ))}
+      </div>
+
+      {/* Education Section */}
+      <h2 className="text-2xl font-mono text-neon-blue mb-6 border-b border-neon-blue/20 pb-2">
+        {"// Education"}
+      </h2>
+
+      <div className="grid grid-cols-1 gap-6 mb-12">
+        {education.map((edu, index) => (
+          <EducationCard key={index} education={edu} index={index} />
         ))}
       </div>
     </motion.div>

@@ -30,6 +30,15 @@ export interface Experience {
   location?: string;
 }
 
+// Education types
+export interface Education {
+  institution: string;
+  degree: string;
+  duration: string;
+  description?: string;
+  location?: string;
+}
+
 // Social links
 export interface SocialLink {
   platform: string;

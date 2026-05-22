@@ -1,16 +1,18 @@
-import { Project, Skill, Experience, SocialLink, NavItem } from '../types';
+import { Project, Skill, Experience, SocialLink, NavItem, Education } from '../types';
 
+// Projects data
 // Projects data
 export const projects: Project[] = [
   {
     id: 'project-1',
     title: 'Canvas – Whiteboard Collaboration App',
-    description: 
-`- A real-time collaborative whiteboard app supporting multi-user drawing with low latency and smooth synchronization.
-- Supports 100+ concurrent users with sub-50ms interaction delay
-- Secure authentication using JWT and session tokens
+    description:
+      `- Engineered a real-time collaborative drawing platform using Next.js and WebSockets, supporting 100+ users with sub-50ms latency
+- Designed an efficient data structure to manage and synchronize strokes across users while ensuring minimal lag and consistency
+- Implemented an authentication mechanism to ensure secure access control using JWT and session-based strategies
+- Developed an optimized event-handling system to reduce redundant re-renders, reducing the latency by 300%
 `,
-    tags: ['Next.js', 'TypeScript', 'WebSockets', 'PostgreSQL', 'Node.js'],
+    tags: ['Next.js', 'TypeScript', 'Tailwind CSS', 'WebSockets', 'Node.js', 'Express', 'PostgreSQL'],
     codeSnippet: `
   // Socket connection and broadcasting
   socket.on('draw', (stroke) => {
@@ -21,8 +23,30 @@ export const projects: Project[] = [
     demoUrl: 'https://canvas.harshbansal.in',
     githubUrl: 'https://github.com/harshbansal8705/canvas',
     featured: true
+  },
+  {
+    id: 'project-2',
+    title: 'Multithreaded Web Server & Proxy',
+    description:
+      `- Engineered a multi-threaded web server in C++, capable of parsing HTTP requests and handling 100+ client connections.
+- Designed and implemented a proxy server with a custom Least Recently Used cache, reducing latency by 40% on repeated requests
+- Effectively utilized mutex locks and semaphores to ensure thread safety across 20+ concurrent threads, preventing race conditions
+`,
+    tags: ['C++', 'Sockets', 'Pthreads', 'Mutex Locks', 'Semaphores'],
+    codeSnippet: `
+// Worker thread function to handle client requests
+void *handle_client(void *arg) {
+    int client_socket = *((int *)arg);
+    char buffer[BUFFER_SIZE];
+    read(client_socket, buffer, BUFFER_SIZE);
+    // Process request...
+    close(client_socket);
+    return NULL;
+}`,
+    language: 'cpp',
+    githubUrl: 'https://github.com/HarshBansal8705',
+    featured: true
   }
-  
 ];
 
 // Skills data
@@ -57,14 +81,14 @@ export const experiences: Experience[] = [
   {
     company: 'Ivy Homes',
     position: 'Software Development Intern',
-    duration: 'May 2025 – Present',
+    duration: 'May 2025 – Jul 2025',
     location: 'Bangalore, India',
     description: [
-      'Designed and implemented IvyCrawler, a distributed web crawler using BFS-based graph traversal for 5M+ pages/files',
-      'Optimized 8+ REST APIs in Django, reducing response times by up to 40%',
-      'Leading development of backend unit testing suite for CI/CD integration'
+      'Designed IvyCrawler, a distributed web crawler using BFS and queue-based architecture to index 5M+ pages',
+      'Optimized 8+ Django APIs, reducing latency by 30-40% via database and endpoint restructuring',
+      'Leading development of a unit testing suite to enhance backend reliability and CI/CD integration'
     ],
-    technologies: ['Python', 'TypeScript', 'Django', 'Next.js', 'PostgreSQL', 'Web Crawling']
+    technologies: ['Python', 'TypeScript', 'Django', 'Next.js', 'React', 'PostgreSQL', 'CI/CD', 'Web Crawling']
   },
   {
     company: 'MarginValue & Northpull Capital',
@@ -89,6 +113,22 @@ export const experiences: Experience[] = [
       'Integrated secure user credit and payment system with 100+ paid transactions'
     ],
     technologies: ['Node.js', 'Express', 'React', 'Web Scraping', 'GitHub Actions']
+  }
+];
+
+// Education data
+export const education: Education[] = [
+  {
+    institution: 'Indian Institute of Technology Kharagpur',
+    degree: 'Bachelor of Technology in Chemical Engineering',
+    duration: 'Nov 2022 – May 2026',
+    location: 'West Bengal, India'
+  },
+  {
+    institution: 'Ramjas Senior Secondary School No. 4',
+    degree: 'Central Board of Secondary Education',
+    duration: 'April 2015 – May 2022',
+    location: 'Delhi, India'
   }
 ];
 
