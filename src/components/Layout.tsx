@@ -47,13 +47,22 @@ export default function RootLayout({
           setIsCommandLineOpen(false);
         }
         break;
+      case 'cat':
+        if (args[0] === 'resume.pdf') {
+          router.push('/resume');
+          setIsCommandLineOpen(false);
+        } else {
+          return `cat: ${args[0] || ''}: No such file or directory`;
+        }
+        break;
       case 'clear':
         setIsCommandLineOpen(false);
         break;
       case 'help':
         return `Available commands:
-- goto <page>: Navigate to a page (home, projects, skills, experience, contact)
+- goto <page>: Navigate to a page (home, projects, skills, experience, contact, resume)
 - show <section>: Display a specific section
+- cat resume.pdf: View resume
 - connect --<platform>: Open social links (github, linkedin, twitter)
 - clear: Clear the terminal
 - help: Show this help message`;

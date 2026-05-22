@@ -162,6 +162,7 @@ export const navItems: NavItem[] = [
   { name: 'Projects', path: '/projects', icon: 'Code' },
   { name: 'Skills', path: '/skills', icon: 'Cpu' },
   { name: 'Experience', path: '/experience', icon: 'Briefcase' },
+  { name: 'Resume', path: '/resume', icon: 'FileText' },
   { name: 'Contact', path: '/contact', icon: 'Mail' }
 ];
 
